@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.cutm.aiml.intentdemo2.databinding.ActivityMain3Binding
 
 class MainActivity3 : AppCompatActivity() {
@@ -94,7 +95,13 @@ class MainActivity3 : AppCompatActivity() {
         }
 
         binding.btnTestWorker.setOnClickListener {
-            val workRequest = OneTimeWorkRequestBuilder<LogWorker>().build()
+            // Create the data package to send to the worker
+            val inputData = workDataOf("LogWorkerMessage" to "Hello from the Dashboard Background Worker!")
+            
+            val workRequest = OneTimeWorkRequestBuilder<LogWorker>()
+                .setInputData(inputData)
+                .build()
+                
             WorkManager.getInstance(this).enqueue(workRequest)
             Toast.makeText(this, "Worker started! Check Logcat.", Toast.LENGTH_SHORT).show()
         }

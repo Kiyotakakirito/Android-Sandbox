@@ -10,24 +10,19 @@ class LogWorker(context: Context, workerParams: WorkerParameters) :
 
     override fun doWork(): Result {
         return try {
-            // This runs completely in the background!
+            // Retrieve the custom message passed from the Activity
+            val inpMessage = inputData.getString("LogWorkerMessage") ?: "Default Log Message"
+            
             Log.d("LogWorker", "--------------------------------------")
             Log.d("LogWorker", "⚙️ Background Worker Started!")
-            
-            // Simulating a long-running background task
-            for (i in 1..5) {
-                Log.d("LogWorker", "Working... Step $i of 5")
-                Thread.sleep(1000) // Sleep for 1 second to simulate work
-            }
-            
-            Log.d("LogWorker", "✅ Background Worker Finished Successfully!")
+            Log.d("LogWorker", "Message received: $inpMessage")
             Log.d("LogWorker", "--------------------------------------")
             
             // Tell Android the job was a success
             Result.success()
             
         } catch (e: Exception) {
-            Log.e("LogWorker", "❌ Error in Background Worker", e)
+            Log.e("LogWorker", " Error in Background Worker", e)
             
             // Tell Android the job failed, but it should try again later
             Result.retry()
