@@ -95,15 +95,15 @@ class MainActivity3 : AppCompatActivity() {
         }
 
         binding.btnTestWorker.setOnClickListener {
-            // Create the data package to send to the worker
-            val inputData = workDataOf("LogWorkerMessage" to "Hello from the Dashboard Background Worker!")
+            // Create the data package to send to the worker with the Google File URL
+            val inputData = workDataOf("FileUrl" to "https://docs.google.com/document/d/1X_1W9YyE8t-7s8yC5446aR4w1B4F4yRzT/edit") // Dummy URL
             
             val workRequest = OneTimeWorkRequestBuilder<LogWorker>()
                 .setInputData(inputData)
                 .build()
                 
             WorkManager.getInstance(this).enqueue(workRequest)
-            Toast.makeText(this, "Worker started! Check Logcat.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Worker checking file! Check Logcat.", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnStartService.setOnClickListener {
