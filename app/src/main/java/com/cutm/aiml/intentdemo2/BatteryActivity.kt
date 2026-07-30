@@ -27,44 +27,38 @@ class BatteryActivity : AppCompatActivity() {
             val tech = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY) ?: "Unknown"
             
             val status = when (intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
-                BatteryManager.BATTERY_STATUS_CHARGING -> "Charging ⚡"
-                BatteryManager.BATTERY_STATUS_DISCHARGING -> "Discharging 🔋"
-                BatteryManager.BATTERY_STATUS_FULL -> "Full 🟢"
-                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "Not Charging 🛑"
+                BatteryManager.BATTERY_STATUS_CHARGING -> "Charging"
+                BatteryManager.BATTERY_STATUS_DISCHARGING -> "Discharging"
+                BatteryManager.BATTERY_STATUS_FULL -> "Full"
+                BatteryManager.BATTERY_STATUS_NOT_CHARGING -> "Not Charging"
                 else -> "Unknown"
             }
             
             val plug = when (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)) {
-                BatteryManager.BATTERY_PLUGGED_AC -> "AC Charger 🔌"
-                BatteryManager.BATTERY_PLUGGED_USB -> "USB Port 💻"
-                BatteryManager.BATTERY_PLUGGED_WIRELESS -> "Wireless 📶"
-                else -> "On Battery 🔋"
+                BatteryManager.BATTERY_PLUGGED_AC -> "AC Charger"
+                BatteryManager.BATTERY_PLUGGED_USB -> "USB Port"
+                BatteryManager.BATTERY_PLUGGED_WIRELESS -> "Wireless"
+                else -> "On Battery"
             }
 
             val health = when (intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
-                BatteryManager.BATTERY_HEALTH_GOOD -> "Good 👍"
-                BatteryManager.BATTERY_HEALTH_OVERHEAT -> "Overheat ♨️"
-                BatteryManager.BATTERY_HEALTH_DEAD -> "Dead 💀"
-                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> "Over Voltage ⚡"
-                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> "Failure ❌"
-                BatteryManager.BATTERY_HEALTH_COLD -> "Cold ❄️"
+                BatteryManager.BATTERY_HEALTH_GOOD -> "Good"
+                BatteryManager.BATTERY_HEALTH_OVERHEAT -> "Overheat"
+                BatteryManager.BATTERY_HEALTH_DEAD -> "Dead"
+                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> "Over Voltage"
+                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> "Failure"
+                BatteryManager.BATTERY_HEALTH_COLD -> "Cold"
                 else -> "Unknown"
             }
 
             tvBatteryDetails.text = """
-                ⚡ Level: $batteryPct%
-                
-                🔄 Status: $status
-                
-                🔌 Power Source: $plug
-                
-                ❤️ Health: $health
-                
-                🌡️ Temperature: $temp°C
-                
-                ⚡ Voltage: $voltage mV
-                
-                🔋 Technology: $tech
+                Level: $batteryPct%
+                Status: $status
+                Power Source: $plug
+                Health: $health
+                Temperature: $temp°C
+                Voltage: $voltage mV
+                Technology: $tech
             """.trimIndent()
         }
     }
