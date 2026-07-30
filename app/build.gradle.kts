@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.intentdemo2"
+    namespace = "com.cutm.aiml.intentdemo2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.intentdemo2"
+        applicationId = "com.cutm.aiml.intentdemo2"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

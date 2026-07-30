@@ -1,4 +1,4 @@
-package com.example.intentdemo2
+package com.cutm.aiml.intentdemo2
 
 import android.content.BroadcastReceiver
 import android.content.Context

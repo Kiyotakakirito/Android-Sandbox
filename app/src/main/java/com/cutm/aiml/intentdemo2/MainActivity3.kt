@@ -1,4 +1,4 @@
-package com.example.intentdemo2
+package com.cutm.aiml.intentdemo2
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -21,7 +21,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.example.intentdemo2.databinding.ActivityMain3Binding
+import com.cutm.aiml.intentdemo2.databinding.ActivityMain3Binding
 
 class MainActivity3 : AppCompatActivity() {
 

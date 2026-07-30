@@ -1,4 +1,4 @@
-package com.example.intentdemo2
+package com.cutm.aiml.intentdemo2
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.intentdemo2.databinding.ActivityMain2Binding
+import com.cutm.aiml.intentdemo2.databinding.ActivityMain2Binding
 
 class MainActivity2 : AppCompatActivity() {
 
