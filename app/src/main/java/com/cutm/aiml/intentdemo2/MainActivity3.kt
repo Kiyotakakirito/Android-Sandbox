@@ -95,15 +95,24 @@ class MainActivity3 : AppCompatActivity() {
         }
 
         binding.btnTestWorker.setOnClickListener {
-            // Create the data package to send to the worker with the Google File URL
-            val inputData = workDataOf("FileUrl" to "https://drive.google.com/file/d/1cpgZGAlQv7aFu-8hOFE_KeOJ0le65Ai9/view?usp=sharing")
+            val fileUrl = "https://drive.google.com/file/d/1cpgZGAlQv7aFu-8hOFE_KeOJ0le65Ai9/view?usp=sharing"
             
+            // 1. Visually open the file in the web browser or Google Drive app
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(fileUrl))
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "No app found to open links", Toast.LENGTH_SHORT).show()
+            }
+
+            // 2. Also send it to the Background Worker so it logs it in Logcat
+            val inputData = workDataOf("FileUrl" to fileUrl)
             val workRequest = OneTimeWorkRequestBuilder<LogWorker>()
                 .setInputData(inputData)
                 .build()
                 
             WorkManager.getInstance(this).enqueue(workRequest)
-            Toast.makeText(this, "Worker checking file! Check Logcat.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Opening file & Worker started!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnStartService.setOnClickListener {
