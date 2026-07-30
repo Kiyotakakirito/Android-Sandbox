@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.intentdemo2.databinding.ActivityMain3Binding
 
 class MainActivity3 : AppCompatActivity() {
@@ -89,6 +91,12 @@ class MainActivity3 : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(this, "Dialer app not found", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.btnTestWorker.setOnClickListener {
+            val workRequest = OneTimeWorkRequestBuilder<LogWorker>().build()
+            WorkManager.getInstance(this).enqueue(workRequest)
+            Toast.makeText(this, "Worker started! Check Logcat.", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnStartService.setOnClickListener {
