@@ -25,17 +25,6 @@ class MainActivity3 : AppCompatActivity() {
 
     private lateinit var binding: ActivityMain3Binding
 
-    // Permission request launcher
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            openCamera()
-        } else {
-            Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private val dashboardReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
@@ -84,8 +73,9 @@ class MainActivity3 : AppCompatActivity() {
 
         binding.btnPhoneBook.setOnClickListener {
             try {
-                // Use the standard ContactsContract URI instead of hardcoded string
-                val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                // Setting the type specifically to Phone CONTENT_TYPE makes it much more reliable on physical devices
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
                 startActivity(intent)
             } catch (e: Exception) {
                 Toast.makeText(this, "Contacts app not found", Toast.LENGTH_SHORT).show()
@@ -93,7 +83,7 @@ class MainActivity3 : AppCompatActivity() {
         }
 
         binding.btnCamera.setOnClickListener {
-            checkCameraPermission()
+            openCamera()
         }
 
         binding.btnDial.setOnClickListener {
@@ -113,17 +103,6 @@ class MainActivity3 : AppCompatActivity() {
         binding.btnStopService.setOnClickListener {
             stopService(Intent(this, DemoService::class.java))
             Toast.makeText(this, "Service Stopped", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun checkCameraPermission() {
-        when {
-            ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
-                openCamera()
-            }
-            else -> {
-                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
-            }
         }
     }
 
