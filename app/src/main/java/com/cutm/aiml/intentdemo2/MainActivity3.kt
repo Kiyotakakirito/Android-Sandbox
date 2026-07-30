@@ -96,7 +96,7 @@ class MainActivity3 : AppCompatActivity() {
 
         binding.btnTestWorker.setOnClickListener {
             // Create the data package to send to the worker with the Google File URL
-            val inputData = workDataOf("FileUrl" to "https://docs.google.com/document/d/1X_1W9YyE8t-7s8yC5446aR4w1B4F4yRzT/edit") // Dummy URL
+            val inputData = workDataOf("FileUrl" to "https://drive.google.com/file/d/1cpgZGAlQv7aFu-8hOFE_KeOJ0le65Ai9/view?usp=sharing")
             
             val workRequest = OneTimeWorkRequestBuilder<LogWorker>()
                 .setInputData(inputData)
