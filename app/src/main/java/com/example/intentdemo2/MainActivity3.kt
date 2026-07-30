@@ -28,14 +28,6 @@ class MainActivity3 : AppCompatActivity() {
     private val dashboardReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                Intent.ACTION_BATTERY_CHANGED -> {
-                    val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-                    val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
-                    if (level != -1 && scale != -1) {
-                        val batteryPct = level * 100 / scale
-                        binding.tvBattery.text = "Battery: $batteryPct%"
-                    }
-                }
                 Intent.ACTION_AIRPLANE_MODE_CHANGED -> {
                     val isAirplaneModeOn = intent.getBooleanExtra("state", false)
                     binding.tvAirplaneMode.text = "Airplane Mode: ${if (isAirplaneModeOn) "ON" else "OFF"}"
@@ -69,6 +61,10 @@ class MainActivity3 : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
+        }
+
+        binding.btnBattery.setOnClickListener {
+            startActivity(Intent(this, BatteryActivity::class.java))
         }
 
         binding.btnPhoneBook.setOnClickListener {
@@ -118,7 +114,6 @@ class MainActivity3 : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val filter = IntentFilter().apply {
-            addAction(Intent.ACTION_BATTERY_CHANGED)
             addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
         }
         registerReceiver(dashboardReceiver, filter)

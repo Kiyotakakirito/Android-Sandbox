@@ -64,6 +64,11 @@
             android:name=".DemoService"
             android:enabled="true"
             android:exported="true"></service>
+            
+        <activity
+            android:name=".BatteryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.IntentDemo2" />
     </application>
 
 </manifest>

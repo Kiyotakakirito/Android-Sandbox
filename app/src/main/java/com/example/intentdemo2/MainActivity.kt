@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
         i_f = IntentFilter()
         i_f.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
-        i_f.addAction(Intent.ACTION_BATTERY_CHANGED)
 
         loginBtn.setOnClickListener {
             val uname = unameField.text.toString().trim()
