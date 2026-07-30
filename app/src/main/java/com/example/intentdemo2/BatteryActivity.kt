@@ -76,6 +76,11 @@ class BatteryActivity : AppCompatActivity() {
 
         tvBatteryDetails = findViewById(R.id.tvBatteryDetails)
 
+        val btnBack = findViewById<android.widget.Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
+
         val mainView = findViewById<android.view.View>(R.id.main)
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView) { v, insets ->
